@@ -217,7 +217,6 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 ### Reset Environment ###
 
 1. If you previously executed the demo, delete the following tables (and their contents) in Windows Azure Mobile Services.
-
 	- Event table
 	- Rating table
 	- Session table
@@ -579,8 +578,6 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 1. Update the Insert Script for rating a session to the below code.  Use the Internet Explorer Favorite labeled **Rating** on the Favorites bar to copy the code to the clipboard. 
 
 	> **Speaking Point:** Once again instead of making you wait while I type in this script, I'll copy the script I wrote earlier to the clipboard and paste it in.  
-
-	(_Assets/serverscrpts/Rating.Insert.js_)
 	
 	````JavaScript
 	function insert(item, user, request) {
