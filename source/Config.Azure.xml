@@ -1,0 +1,4 @@
+<configuration>
+    <mobileServiceName>[Mobile Service Name]</mobileServiceName>
+    <mobileServiceKey>[Mobile Service Key]</mobileServiceKey>
+</configuration>

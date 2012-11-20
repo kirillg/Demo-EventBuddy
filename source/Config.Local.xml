@@ -1,0 +1,35 @@
+<configuration>
+    
+    <settings>
+        <!-- Change this setting to true if you plan to run the application within Visual Studio Phone Emulator -->
+        <usePhoneEmulator>false</usePhoneEmulator>
+    </settings>
+    
+    <localPaths>
+        <workingDir>C:\Demos</workingDir>
+        <solutionWorkingDir>C:\Demos\Source</solutionWorkingDir>
+        <beginSolutionDir>.\code\begin</beginSolutionDir>
+        <win8SolutionFile>.\WindowsStoreApp\EventBuddy.sln</win8SolutionFile>
+		<phone8SolutionFile>.\WindowsPhone8\EventBuddy.WindowsPhone.sln</phone8SolutionFile>
+        <assetsDir>.\code\assets</assetsDir>
+        <serverSnippetsDirInAssets>.\serverscripts</serverSnippetsDirInAssets>		
+        <vsSuoDir>.\setup\assets</vsSuoDir>
+        <!-- <vsSettingsFile>.\setup\assets\VS2012Settings.vssettings</vsSettingsFile> -->
+     </localPaths>
+    
+    <appSetup>
+      <packagename>[Package Name in App Manifest]</packagename>
+      <appxPath>\WindowsStoreApp\EventBuddy\AppPackages\EventBuddy_1.0.0.0_AnyCPU_Test</appxPath>
+    </appSetup>
+    
+    <codeSnippets>
+        <cSharp>.\setup\snippets\csharp</cSharp>
+    </codeSnippets>
+    
+    <serverSnippetsList>Channel.Insert.js, Rating.Insert.js, Session.Insert.js</serverSnippetsList>
+    
+    <favorites>
+        <iESnippets>.\setup\snippets\IESnippets</iESnippets>
+    </favorites>
+    
+</configuration>
