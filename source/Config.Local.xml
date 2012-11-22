@@ -18,7 +18,7 @@
      </localPaths>
     
     <appSetup>
-      <packagename>[Package Name in App Manifest]</packagename>
+      <packagename>{Package Name in App Manifest}</packagename>
       <appxPath>\WindowsStoreApp\EventBuddy\AppPackages\EventBuddy_1.0.0.0_AnyCPU_Test</appxPath>
     </appSetup>
     
