@@ -14,6 +14,7 @@ if ($ResetLocal.IsPresent) {
 	Write-Host "- Remove current working directory if exists"
 	Write-Host "- Create new working directory (as specified in Config.Local.xml)"
 	Write-Host "- Copy assets code to working directory"
+	Write-Host "- Update Mobile Services settings in the Windows Phone 8 application"
 	Write-Host "- Uninstall Windows 8 application if installed"
 	Write-Host "- Build Windows 8 application"
 	Write-Host "- Install Windows 8 application"

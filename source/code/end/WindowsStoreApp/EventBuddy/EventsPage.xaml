@@ -101,9 +101,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="loggedUser" Grid.Row="0" Grid.Column="2" IsHitTestVisible="false" Style="{StaticResource LogInTextBlock}" />
+            <TextBlock x:Name="loggedUser" Grid.Row="0" Grid.Column="2" IsHitTestVisible="false" Style="{StaticResource LogInTextBlock}"/>
             <Button x:Name="backButton" Click="GoBack" Grid.Row="1" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Text="event buddy" Grid.Row="1" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
@@ -119,39 +119,6 @@
                             Save="btnSaveEvent"
                             />
 
-        <!-- Add Event popup -->
-        <!--<Popup x:Name="addEventPopup" Grid.Row="1" IsLightDismissEnabled="False" VerticalOffset="-140" HorizontalAlignment="Right" HorizontalOffset="-400">
-            <Popup.ChildTransitions>
-                <TransitionCollection>
-                    <PopupThemeTransition />
-                </TransitionCollection>
-            </Popup.ChildTransitions>
-            <Grid HorizontalAlignment="Right" Height="992"  Background="#464646"  >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="400" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition  Height="0.08*" />
-                    <RowDefinition  Height="0.92*" />
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Column="0" Grid.Row="0" Style="{StaticResource PopupHeader}">
-                    <TextBlock Text="Add Event" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0 15 0 0"/>
-                </StackPanel>
-                <StackPanel  Grid.Column="0" Grid.Row="1" Style="{StaticResource PopupContent}">
-                    <TextBlock Text="Name" Style="{StaticResource PopupContentTextBlock}" />
-                    <TextBox Name="txtName" Text="{Binding Name, Mode=TwoWay}"  Style="{StaticResource BasicTextBox}"   />
-                    <TextBlock Text="Description"  Style="{StaticResource PopupContentTextBlock}" />
-                    <TextBox Text="{Binding Description, Mode=TwoWay}" Height="150" TextWrapping="Wrap"  AcceptsReturn="True" Style="{StaticResource BasicTextBox}" />
-                    <TextBlock Text="Start Date" Style="{StaticResource PopupContentTextBlock}" />
- 
-                    <TextBox Text="{Binding Start, Mode=TwoWay}" />
-                    <TextBlock Text="End Date" Style="{StaticResource PopupContentTextBlock}" />
-                    <TextBox Text="{Binding Start, Mode=TwoWay}" />
-                   
-                    <Button Content="Save" Click="btnSaveEvent" HorizontalAlignment="Center" />
-                </StackPanel>
-            </Grid>
-        </Popup>-->        
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->
             <VisualStateGroup x:Name="ApplicationViewStates">

@@ -77,14 +77,6 @@ namespace EventBuddy
 
             await LoadSessions(Event);
             
-            //// Uncomment for testing
-            //var sessions = new List<Session>();
-
-            //sessions.Add(new Session { Name = "A nice sample session", Speaker = "Sample Speaker", End = new DateTime(2012, 10, 30), Start = new DateTime(2012, 10, 30), Room = "3Z" });
-            //sessions.Add(new Session { Name = "Another sample session (now with text wrap!)", Speaker = "Another Speaker", End = new DateTime(2012, 10, 30), Start = new DateTime(2012, 10, 30), Room = "3Z" });
-
-            //Sessions = sessions;
-
             itemList.ItemsSource = _sessions;
 
             gridEvent.DataContext = Event;
@@ -115,9 +107,6 @@ namespace EventBuddy
 
             if (item.Id == 0)
             {
-                //TODO: add insert to session table
-                
-
                 SaveSession(item);
             }
             else

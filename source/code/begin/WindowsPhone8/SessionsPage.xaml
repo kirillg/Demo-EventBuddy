@@ -24,6 +24,7 @@
         <StackPanel Grid.Row="0" Margin="12,35,0,28">
             <TextBlock Text="Event Buddy" Style="{StaticResource CustomPhoneTextNormalStyle}"/>
             <TextBlock Text="{Binding EventName}" Margin="9,-7,0,0" Style="{StaticResource CustomPhoneTextTitle1Style}"/>
+            <ProgressBar x:Name="LoadingProgress" IsIndeterminate="True"></ProgressBar>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->        
@@ -103,7 +104,6 @@
                                         <TextBlock Text="room" Foreground="Black" FontSize="15" TextAlignment="Center"/>
                                         <TextBlock Text="{Binding Room}" FontSize="26" Foreground="#1C9BB9" TextAlignment="Center" />
                                     </StackPanel>
-                                    <!--<Image Grid.Row="1" Source="Assets/twitter_icon.png" VerticalAlignment="Bottom"/>-->
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -113,4 +113,9 @@
             </ListBox>
         </Grid>
     </Grid>
-    </phone:PhoneApplicationPage>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="RefreshAppBarButton" IconUri="Assets\refresh.png" Text="Refresh" Click="RefreshAppBarButton_Click"></shell:ApplicationBarIconButton>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

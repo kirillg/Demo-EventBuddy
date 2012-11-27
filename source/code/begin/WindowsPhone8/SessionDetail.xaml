@@ -30,7 +30,6 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="15,0,15,0">          
             <StackPanel>
                 <!-- Speaker -->
-                <!--<TextBlock Text="Information" Style="{StaticResource CustomPhoneTextHeaderStyle}" />-->
                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="15 0 0 5" >
                     <Image Source="{Binding Path=Img}" 
                            Height="100" Width="100" 

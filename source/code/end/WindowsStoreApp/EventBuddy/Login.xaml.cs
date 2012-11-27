@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Input;
 namespace EventBuddy
 {
     public sealed partial class Login : UserControl
-    {
+    {        
         public async Task LoginTwitter()
         {
             await App.MobileService.LoginAsync(MobileServiceAuthenticationProvider.Twitter);
@@ -23,23 +23,16 @@ namespace EventBuddy
             await App.MobileService.LoginAsync(MobileServiceAuthenticationProvider.Facebook);
         }
 
-        #region
+        #region 
 
         public static Profile Profile { get; set; }
-
+       
         static Login()
         {
-            //Profile = new Profile();
-            //Profile.FirstName = "First";
-            //Profile.LastName = "Lastname";
-            //Profile.ProfileUri = "ms-appx:///Assets/NoProfile.png";
-
-
         }
 
         public Login()
         {
-            //this.DataContext = this;
             this.InitializeComponent();
 
             UpdateVisibility();
@@ -49,7 +42,7 @@ namespace EventBuddy
 
         private void ucTapped(object sender, TappedRoutedEventArgs e)
         {
-            loginPopup.IsOpen = !loginPopup.IsOpen;
+            loginPopup.IsOpen = !loginPopup.IsOpen;         
         }
 
         private async void OnLoginFacebook(object sender, PointerRoutedEventArgs e)
@@ -104,9 +97,6 @@ namespace EventBuddy
 
         private async void OnLoginTwitter(object sender, PointerRoutedEventArgs e)
         {
-            // var brush = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
-            // brush.Opacity = 0.5;
-            // (sender as StackPanel).Background = brush;
             try
             {
                 await LoginTwitter();
@@ -151,12 +141,6 @@ namespace EventBuddy
                 login.Invoke(this, null);
 
             UpdateVisibility();
-
-            //TODO: neet to test on app.mobileservice if current user is set.
-            //Profile.FirstName = "Josh";
-            //Profile.LastName = "Twist";
-            //Profile.ProfileUri = "ms-appx:///Assets/jt.jpg";
-            //imgProfile.Source = new BitmapImage(new Uri("ms-appx:///Assets/jt.jpg"));
 
             loginPopup.IsOpen = false;
         }

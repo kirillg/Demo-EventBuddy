@@ -5,11 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:EventBuddy"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Common="using:EventBuddy.Common"
-    mc:Ignorable="d"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:EventBuddy.Controls"
+    xmlns:validation="using:EventBuddy.Validation"
+    xmlns:Common="using:EventBuddy.Common" mc:Ignorable="d"
     d:DesignHeight="768"
     d:DesignWidth="1360" >
     <UserControl.Resources>
+        <validation:DateValidator x:Key="DateValidator" />
+        <validation:RequiredValidator x:Key="RequiredValidator" />
         <Common:StringFormatConverter x:Key="StringFormatConverter" />
     </UserControl.Resources>
     <Grid x:Name="grid">
@@ -77,9 +80,13 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock  Style="{StaticResource PopupContentHeader}" Text="Add Event" Grid.ColumnSpan="2" />
                         <StackPanel  Style="{StaticResource PopupContentPanel}" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" >
+                            
                             <TextBlock Text="Event Title:" Style="{StaticResource PopupContentTextBlock}" />
-                            <TextBox Name="txtTitle" Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource BasicTextBox}" Height="35" />
+
+                            <controls:ValidatingTextBox x:Name="txtTitle" Validator="{StaticResource RequiredValidator}" Text="{Binding Name, Mode=TwoWay}" Height="35"/>
+
                             <TextBlock Text="Overview:" Style="{StaticResource PopupContentTextBlock}" />
+                            
                             <TextBox Text="{Binding Description, Mode=TwoWay}" Style="{StaticResource BasicTextBox}" Height="150" TextWrapping="Wrap"  AcceptsReturn="True"  />
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -90,20 +97,12 @@
                                 <StackPanel Grid.Column="0">
                                     <StackPanel Grid.Column="2">
                                         <TextBlock Text="Start Time:" Style="{StaticResource PopupContentTextBlock}" />
-                                            <Border BorderBrush="Silver" BorderThickness="2">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition Width="25" />
-                                                </Grid.ColumnDefinitions>
-                                                <TextBox Grid.Column="0" Text="{Binding Start, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}" MinWidth="278" BorderThickness="0" />
-                                            <TextBlock Grid.Column="1" Text="&#57361;"  Margin="0,0,6,4" 
-                                                            Foreground="{StaticResource ComboBoxArrowForegroundThemeBrush}" FontWeight="Bold" 
-                                                            FontSize="{StaticResource ComboBoxArrowThemeFontSize}"  
-                                                            FontFamily="{StaticResource SymbolThemeFontFamily}" 
-                                                            HorizontalAlignment="Left" 
-                                                            VerticalAlignment="Center"
-                                                            Width="20" MaxWidth="20"/>
+                                        <Border BorderBrush="Silver" BorderThickness="2">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                                <controls:ValidatingTextBox x:Name="startDate" Validator="{StaticResource DateValidator}" Grid.Column="0" Text="{Binding Start, Mode=TwoWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}" MinWidth="278" />
                                         </Grid>
                                         </Border>
                                     </StackPanel>
@@ -114,10 +113,8 @@
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition />
-                                                <ColumnDefinition Width="25" />
                                             </Grid.ColumnDefinitions>
-                                            <TextBox Grid.Column="0" Text="{Binding End, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}" MinWidth="278" BorderThickness="0" />
-                                            <TextBlock Grid.Column="1" Text="&#57361;"  Margin="0,0,6,4"  Foreground="{StaticResource ComboBoxArrowForegroundThemeBrush}" FontWeight="Bold" FontSize="{StaticResource ComboBoxArrowThemeFontSize}"  FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                            <controls:ValidatingTextBox x:Name="endDate" Validator="{StaticResource DateValidator}" Grid.Column="0" Text="{Binding End, Mode=TwoWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}" MinWidth="278" />
                                         </Grid>
                                     </Border>
                                 </StackPanel>

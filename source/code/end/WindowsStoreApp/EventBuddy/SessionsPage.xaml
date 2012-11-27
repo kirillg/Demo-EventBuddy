@@ -40,10 +40,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="loggedUser" Grid.Row="0" Grid.Column="2" IsHitTestVisible="false" Style="{StaticResource LogInTextBlock}" />
+            <TextBlock x:Name="loggedUser" Grid.Row="0" Grid.Column="2" Style="{StaticResource LogInTextBlock}" IsHitTestVisible="false"/>
             <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="1" >
-                    <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}" />
-                    <TextBlock  Text="{Binding Name}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false" TextAlignment="Left"/>
+                <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}" />
+                <TextBlock  Text="{Binding Name}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false" TextAlignment="Left"/>
             </StackPanel>
         </Grid>
 

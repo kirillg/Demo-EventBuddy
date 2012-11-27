@@ -8,18 +8,14 @@ using Windows.UI.Xaml.Data;
 
 namespace EventBuddy.Common
 {
-    //TODO: NH remove
     public sealed class ItemCountToVisibilityConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             int? itemCount = value as int?;
 
             return (itemCount.HasValue && itemCount > 0) ? Visibility.Collapsed : Visibility.Visible;
-
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, string itemCount)
         {

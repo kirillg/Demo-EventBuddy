@@ -10,7 +10,8 @@
         <solutionWorkingDir>C:\Demos\Source</solutionWorkingDir>
         <beginSolutionDir>.\code\begin</beginSolutionDir>
         <win8SolutionFile>.\WindowsStoreApp\EventBuddy.sln</win8SolutionFile>
-		<phone8SolutionFile>.\WindowsPhone8\EventBuddy.WindowsPhone.sln</phone8SolutionFile>
+        <phone8SolutionFile>.\WindowsPhone8\EventBuddy.WindowsPhone.sln</phone8SolutionFile>
+        <appResourcesFile>.\WindowsPhone8\Resources\AppResources.resx</appResourcesFile>
         <assetsDir>.\code\assets</assetsDir>
         <serverSnippetsDirInAssets>.\serverscripts</serverSnippetsDirInAssets>		
         <vsSuoDir>.\setup\assets</vsSuoDir>

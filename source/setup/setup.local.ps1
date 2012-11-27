@@ -1,17 +1,25 @@
-﻿Param([string] $demoSettingsFile)
+﻿Param([string] $demoSettingsFileLocal, [string] $demoSettingsFileAzure)
 
 $scriptDir = (split-path $myinvocation.mycommand.path -parent)
 Set-Location $scriptDir
 
 # "========= Initialization =========" #
 pushd ".."
-# Get settings from user configuration file
-if($demoSettingsFile -eq $nul -or $demoSettingsFile -eq "")
+
+# Get settings from user .local configuration file
+if($demoSettingsFileLocal -eq $nul -or $demoSettingsFileLocal -eq "")
 {
-	$demoSettingsFile = "Config.Local.xml"
+	$demoSettingsFileLocal = "Config.Local.xml"
 }
 
-[xml] $xmlDemoSettings = Get-Content $demoSettingsFile
+# Get settings from user .azure configuration file
+if($demoSettingsFileAzure -eq $nul -or $demoSettingsFileAzure -eq "")
+{
+	$demoSettingsFileAzure = "Config.Azure.xml"
+}
+
+[xml] $xmlDemoSettings = Get-Content $demoSettingsFileLocal
+[xml] $xmlDemoSettingsAzure = Get-Content $demoSettingsFileAzure
 
 # Import required settings from config.local.xml if neccessary #
 [string] $CSharpSnippets = Resolve-Path $xmlDemoSettings.configuration.codeSnippets.cSharp
@@ -23,6 +31,7 @@ if($demoSettingsFile -eq $nul -or $demoSettingsFile -eq "")
 
 [string] $win8SolutionFile = $xmlDemoSettings.configuration.localPaths.win8SolutionFile
 [string] $phone8SolutionFile = $xmlDemoSettings.configuration.localPaths.phone8SolutionFile
+[string] $appResourcesFile = $xmlDemoSettings.configuration.localPaths.appResourcesFile
 [string] $workingDir = $xmlDemoSettings.configuration.localPaths.workingDir
 [string] $solutionWorkingDir = $xmlDemoSettings.configuration.localPaths.solutionWorkingDir
 [string] $serverSnippetsDirInAssets = $xmlDemoSettings.configuration.localPaths.serverSnippetsDirInAssets
@@ -35,6 +44,9 @@ if($demoSettingsFile -eq $nul -or $demoSettingsFile -eq "")
 
 [string] $appName  = $xmlDemoSettings.configuration.appSetup.packagename;
 [string] $appxPath =  $xmlDemoSettings.configuration.appSetup.appxPath;
+
+[string] $mobileServiceUrl = $xmlDemoSettingsAzure.configuration.mobileServiceUrl
+[string] $mobileServiceKey = $xmlDemoSettingsAzure.configuration.mobileServiceKey
 
 popd
 # "========= Main Script =========" #
@@ -59,6 +71,24 @@ New-Item "$workingDir\Assets" -type directory | Out-Null
 Copy-Item "$assetsDir\*" "$workingDir\Assets\" -Recurse -Force
 write-host "Copying Assets code to working directory done!"
 
+write-host
+write-host
+write-host "========= Update Mobile Services settings in WP8 AppResources... ========="
+$appResources = Join-Path $solutionWorkingDir $appResourcesFile
+
+$appResourcesXml = New-Object xml
+$appResourcesXml.psbase.PreserveWhitespace = $true
+$appResourcesXml.Load($appResources)
+
+$mobileServiceUrlEntry = $appResourcesXml.root.data | Where-Object { $_.name -eq 'mobileServiceUrl' }
+$mobileServiceUrlEntry.value = $mobileServiceUrl
+
+$mobileServiceKeyEntry = $appResourcesXml.root.data | Where-Object { $_.name -eq 'mobileServiceKey' }
+$mobileServiceKeyEntry.value = $mobileServiceKey
+
+$appResourcesXml.save($appResources)
+write-host "Update WP8 AppResources settings done!"
+
 [string] $solution = Resolve-Path (Join-Path $solutionWorkingDir $win8SolutionFile)
 [string] $phoneSolution = Resolve-Path (Join-Path $solutionWorkingDir $phone8SolutionFile)
 write-host
@@ -66,12 +96,12 @@ write-host
 write-host "========= Uninstall > Build > Install Event Buddy app ... ========="
 
 write-host "Removing application..."
-Get-AppxPackage | Where {$_.Name –match "$appName"} | Remove-AppxPackage
+Get-AppxPackage | Where {$_.Name -eq "$appName"} | Remove-AppxPackage
 
 write-host
 write-host
 write-host "Building Windows 8 application..."
-&"C:\Windows\Microsoft.Net\Framework64\v4.0.30319\MSBUILD.exe" ($solution,"/p:configuration=Release", "/target:Clean,Rebuild,Publish")
+&"C:\Windows\Microsoft.Net\Framework64\v4.0.30319\MSBUILD.exe" ($solution,"/p:configuration=Release", "/target:Clean,Rebuild,Publish", "/p:NoWarn=1998")
 
 write-host
 write-host
@@ -82,15 +112,9 @@ Start-Process powershell ("-command", "$appxPS")
 write-host
 write-host
 write-host "========= Installing Code Snippets for the Windows 8 application... ========="
-[string] $documentsFolder = [Environment]::GetFolderPath("MyDocuments")
-if (-NOT (test-path "$documentsFolder"))
-{
-    $documentsFolder = "$env:UserProfile\Documents";
-}
+[string] $vsiPath = Resolve-Path snippets\csharp\EventBuddy.vsi
 
-[string] $myCSharpSnippetsLocation = "$documentsFolder\Visual Studio 2012\Code Snippets\Visual C#\My Code Snippets"
-
-Copy-Item "$CSharpSnippets\*.snippet" "$myCSharpSnippetsLocation" -force
+.\installCodeSnippets.ps1 $vsiPath
 
 write-host "Installing Code Snippets done!"
 

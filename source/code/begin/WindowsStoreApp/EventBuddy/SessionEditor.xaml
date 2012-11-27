@@ -96,11 +96,11 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0">
                                     <TextBlock Text="Start Time:" Style="{StaticResource PopupContentTextBlock}"  />
-                                    <controls:ValidatingTextBox x:Name="startDate" Validator="{StaticResource DateValidator}" Text="{Binding Start, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}"/>
+                                    <controls:ValidatingTextBox x:Name="startDate" Validator="{StaticResource DateValidator}" Text="{Binding Start, Mode=TwoWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="2">
                                     <TextBlock Text="End Time:" Style="{StaticResource PopupContentTextBlock}" />
-                                    <controls:ValidatingTextBox x:Name="endDate" Validator="{StaticResource DateValidator}" Text="{Binding End, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}"/>
+                                    <controls:ValidatingTextBox x:Name="endDate" Validator="{StaticResource DateValidator}" Text="{Binding End, Mode=TwoWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}"/>
                                 </StackPanel>
                             </Grid>
                             <TextBlock Text="Upload Document:" Style="{StaticResource PopupContentTextBlock}" Visibility="Collapsed"/>

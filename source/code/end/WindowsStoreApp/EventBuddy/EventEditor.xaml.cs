@@ -11,8 +11,6 @@ namespace EventBuddy
         public EventEditor()
         {
             this.InitializeComponent();
-            
-            //this.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             VisualStateManager.GoToState(this, "hidden", false);
         }
 
@@ -73,7 +71,6 @@ namespace EventBuddy
 
         public void Show()
         {
-            //this.Visibility = Windows.UI.Xaml.Visibility.Visible;
             VisualStateManager.GoToState(this, "shown", true);
             txtTitle.Focus(Windows.UI.Xaml.FocusState.Programmatic);
         }
@@ -81,23 +78,24 @@ namespace EventBuddy
         public void Hide()
         {
             VisualStateManager.GoToState(this, "hidden", true);
-            //this.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
 
         private void OnCancelClick(object sender, RoutedEventArgs e)
         {
-            Shown = false; //note shown property does not seem to be working with the dep prop
-            //this.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            Shown = false; 
             InvokeCancelled();
             Hide();
         }
 
         private void OnSaveClick(object sender, RoutedEventArgs e)
         {
-            Hide();
-            Shown = false;//note shown property does not seem to be working with the dep prop
-            //this.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            InvokeSave();
+            if (txtTitle.IsValid() && endDate.IsValid() && startDate.IsValid())
+            {
+                Hide();
+                Shown = false; 
+                
+                InvokeSave();
+            }
         }
     }
 }

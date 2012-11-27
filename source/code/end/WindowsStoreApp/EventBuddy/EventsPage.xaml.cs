@@ -24,7 +24,7 @@ namespace EventBuddy
 
             Events.Add(item);
         }
-
+        
         private async Task LoadEvents()
         {
             Events = await App.MobileService.GetTable<Event>().ToEnumerableAsync();
@@ -180,11 +180,6 @@ namespace EventBuddy
 
         private async void btnSaveEvent(object sender, EventBuddy.EventEditor.SaveEditorEventArgs args)
         {
-            //var item = addEventPopup.DataContext as Event;            
-            //SaveEvent(item);
-            //UpdateVisibility();
-            //addEventPopup.IsOpen = false;
-
             var item = eventEditor.DataContext as EventEditorViewModel;
             await SaveEvent(item.Event);
             UpdateVisibility();
@@ -198,10 +193,7 @@ namespace EventBuddy
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //if (GetPrivateClient() != null && GetPrivateClient().CurrentUser != null)
-            //{
             await LoadEvents();
-            //}
             itemGridView.ItemsSource = _events;
             UpdateVisibility();
         }
@@ -224,10 +216,6 @@ namespace EventBuddy
 
         private void btnAddEvent(object sender, RoutedEventArgs e)
         {
-            //addEventPopup.DataContext = new Event();
-            //addEventPopup.IsOpen = true;
-            //txtName.Focus(FocusState.Programmatic);                          
-
             eventEditor.DataContext = new EventEditorViewModel();
             eventEditor.Show();
         }

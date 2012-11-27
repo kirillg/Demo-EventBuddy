@@ -12,7 +12,6 @@ namespace EventBuddy.WindowsPhone
 {
     public partial class SessionsPage : PhoneApplicationPage, INotifyPropertyChanged 
     {
-
         public SessionsPage()
         {
             InitializeComponent();
@@ -28,6 +27,7 @@ namespace EventBuddy.WindowsPhone
 
         private async void LoadData()
         {
+            this.LoadingProgress.IsIndeterminate = true;
             string id = this.NavigationContext.QueryString["id"];
             EventName = this.NavigationContext.QueryString["name"];
             int eventId = int.Parse(id);
@@ -37,6 +37,8 @@ namespace EventBuddy.WindowsPhone
             {
                 EventSessions.Add(item);
             }
+
+            this.LoadingProgress.IsIndeterminate = false;
         }
 
         private readonly ObservableCollection<Session> _sessions = new ObservableCollection<Session>();
@@ -71,18 +73,6 @@ namespace EventBuddy.WindowsPhone
                 string uri = string.Format("/SessionDetail.xaml?id={0}", session.Id);
                 this.NavigationService.Navigate(new Uri(uri, UriKind.Relative));
             }
-
-            //Session session = (Session)e.DataContext;
-            //PhoneApplicationService.Current.State["Session"] = session;
-            //string value = b.Content.ToString();
-            //var rating = new Rating()
-            //{
-            //    ImageUrl = "https://twimg0-a.akamaihd.net/profile_images/1349731834/profile2_reasonably_small.png",
-            //    Score = int.Parse(value),
-            //    SessionId = s.Id,
-            //    RaterName = "Nick Harris",
-            //};
-            //await App.MobileService.GetTable<Rating>().InsertAsync(rating);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -103,6 +93,11 @@ namespace EventBuddy.WindowsPhone
             {
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        private void RefreshAppBarButton_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

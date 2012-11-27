@@ -18,7 +18,6 @@ namespace EventBuddy
         public App()
         {
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
 
             RequestedTheme = ApplicationTheme.Light;
         }
@@ -37,21 +36,6 @@ namespace EventBuddy
                 //Associate the frame with a SuspensionManager key                                
                 SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
 
-                if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    // Restore the saved session state only when appropriate
-                    ///TODO:
-                    //try
-                    //{
-                    //    await SuspensionManager.RestoreAsync();
-                    //}
-                    //catch (SuspensionManagerException)
-                    //{
-                    //    //Something went wrong restoring state.
-                    //    //Assume there is no state and continue
-                    //}
-                }
-
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
@@ -69,15 +53,6 @@ namespace EventBuddy
             Window.Current.Activate();
         }
     
-        private async void OnSuspending(object sender, SuspendingEventArgs e)
-        {
-            //TODO:
-            //var deferral = e.SuspendingOperation.GetDeferral();
-        
-            //await SuspensionManager.SaveAsync();
-            //deferral.Complete();
-        }
-
         public static LiveConnectSession LiveSession;
 
         #endregion

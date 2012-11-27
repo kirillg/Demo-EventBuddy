@@ -88,6 +88,24 @@ namespace EventBuddy.WindowsPhone.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [Mobile Service Key].
+        /// </summary>
+        public static string mobileServiceKey {
+            get {
+                return ResourceManager.GetString("mobileServiceKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Mobile Service URL].
+        /// </summary>
+        public static string mobileServiceUrl {
+            get {
+                return ResourceManager.GetString("mobileServiceUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {

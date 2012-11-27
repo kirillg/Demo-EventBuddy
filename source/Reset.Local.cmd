@@ -34,7 +34,7 @@ call %powerShellDir%\powershell.exe -Command "&'.\setup\tasks\install-demotoolki
 IF %ERRORLEVEL% == 1 GOTO exit
 
 %powerShellDir%\powershell.exe -NonInteractive -command ".\setup\cleanup.local.ps1" ".\Config.Local.xml" 
-%powerShellDir%\powershell.exe -NonInteractive -command ".\setup\setup.local.ps1" ".\Config.Local.xml"
+%powerShellDir%\powershell.exe -NonInteractive -command ".\setup\setup.local.ps1" ".\Config.Local.xml" ".\Config.Azure.xml"
 
 :exit
 

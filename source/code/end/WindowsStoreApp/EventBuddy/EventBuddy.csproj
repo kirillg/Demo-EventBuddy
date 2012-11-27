@@ -117,6 +117,7 @@
     <Compile Include="Common\ItemCountToVisibilityConverter.cs" />
     <Compile Include="Common\StringFormatConverter.cs" />
     <Compile Include="DataModel\User.cs" />
+    <Compile Include="Controls\ValidatingTextBox.cs" />
     <Compile Include="Helpers\FacebookHelper.cs" />
     <Compile Include="Helpers\FacebookUser.cs" />
     <Compile Include="Helpers\LoginMessageHelper.cs" />
@@ -150,6 +151,9 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Validation\DateValidator.cs" />
+    <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="Validation\RequiredValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -212,7 +216,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

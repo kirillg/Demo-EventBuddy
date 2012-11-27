@@ -54,14 +54,12 @@ namespace EventBuddy.WindowsPhone.Model
         {
             get 
             {
-                //string[] bits =  _deckSource.Split('?');
-                //if (!string.IsNullOrEmpty(_deckSource))
-                //    return string.Format("{0}?{1}", bits[0], Uri.EscapeDataString(bits[1]));
-                //else
-                    return _deckSource; 
+                return _deckSource; 
             }
-            set { _deckSource = value; }
-
+            set 
+            { 
+                _deckSource = value; 
+            }
         }
     }
 }

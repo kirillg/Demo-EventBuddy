@@ -15,8 +15,8 @@ namespace EventBuddy.WindowsPhone
     public partial class App : Application
     {
         public static MobileServiceClient MobileService = new MobileServiceClient(
-            "https://{mobile-service-name}.azure-mobile.net/",
-            "{mobile-service-key}"
+            AppResources.mobileServiceUrl,
+            AppResources.mobileServiceKey
         );
 
         /// <summary>

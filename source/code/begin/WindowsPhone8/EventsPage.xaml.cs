@@ -16,13 +16,9 @@ namespace EventBuddy.WindowsPhone
         static Popup popup = new Popup();
         bool showError = false;
 
-        // Constructor
         public EventsPage()
         {
             InitializeComponent();
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
 
             this.DataContext = this;
 
@@ -98,12 +94,15 @@ namespace EventBuddy.WindowsPhone
 
         private async void LoadData()
         {
+            this.LoadingProgress.IsIndeterminate = true;
             var events = await App.MobileService.GetTable<Event>().ToEnumerableAsync();
             Events.Clear();
             foreach (var item in events)
             {
                 Events.Add(item);
             }
+
+            this.LoadingProgress.IsIndeterminate = false;
         }
 
         private readonly ObservableCollection<Event> _events = new ObservableCollection<Event>();
@@ -155,20 +154,14 @@ namespace EventBuddy.WindowsPhone
             await FacebookLogin();
         }
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
+        private void RefreshAppBarButton_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
 
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+        private void LoginAppBarButton_Click(object sender, EventArgs e)
+        {
+            this.ShowIdentityProviders();
+        }
     }
 }

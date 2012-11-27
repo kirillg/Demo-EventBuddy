@@ -102,7 +102,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
-                                                <controls:ValidatingTextBox x:Name="startDate" Validator="{StaticResource DateValidator}" Grid.Column="0" Text="{Binding Start, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}" MinWidth="278" />
+                                                <controls:ValidatingTextBox x:Name="startDate" Validator="{StaticResource DateValidator}" Grid.Column="0" Text="{Binding Start, Mode=TwoWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}" MinWidth="278" />
                                         </Grid>
                                         </Border>
                                     </StackPanel>
@@ -114,7 +114,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
-                                            <controls:ValidatingTextBox x:Name="endDate" Validator="{StaticResource DateValidator}" Grid.Column="0" Text="{Binding End, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}" MinWidth="278" />
+                                            <controls:ValidatingTextBox x:Name="endDate" Validator="{StaticResource DateValidator}" Grid.Column="0" Text="{Binding End, Mode=TwoWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}" MinWidth="278" />
                                         </Grid>
                                     </Border>
                                 </StackPanel>

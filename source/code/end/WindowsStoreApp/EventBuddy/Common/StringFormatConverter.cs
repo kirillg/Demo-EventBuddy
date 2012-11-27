@@ -19,6 +19,12 @@ namespace EventBuddy.Common
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
+            DateTime temp;
+            if (DateTime.TryParse(value.ToString(), out temp))
+            {
+                return temp;
+            }
+
             return value;
         }
     }

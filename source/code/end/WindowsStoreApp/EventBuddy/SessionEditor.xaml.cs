@@ -78,8 +78,11 @@ namespace EventBuddy
 
         private void OnSaveClick(object sender, RoutedEventArgs e)
         {
-            this.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            InvokeSave();
+            if (txtName.IsValid() && startDate.IsValid() && endDate.IsValid())
+            {
+                this.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                InvokeSave();    
+            }
         }
     }
 }

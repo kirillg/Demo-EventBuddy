@@ -12,7 +12,7 @@ In this demo you will start with a disconnected application that manages events 
 
 <a name="goals" />
 ### Goals ###
-In this demo, you will see how to:
+This demo covers:
 
 1. [Getting Started with Mobile Services to Store Data](#Segment1)
 1. [Structured Storage: Connecting your app using Mobile Services](#Segment2)
@@ -106,7 +106,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	> **Note:** Take into account that you can choose to authenticate with **Facebook** instead of **Twitter**. In that case, Facebook applications can be created at https://developers.facebook.com/apps.
 
-	> Once the application is created, under the _Select how your app integrates with Facebook_, choose **Website with Facebook Login** and insert the mobile service URL in **Site URL**.
+	> Once the application is created, under _Select how your app integrates with Facebook_, choose **Website with Facebook Login** and insert the mobile service URL in **Site URL**.
 	
 	> ![Facebook Site URL](images/configure-mobile-service-url-facebook.png?raw=true "Facebook Site URL")	
 
@@ -144,13 +144,13 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 	
 	_Installing dependencies_
 
-1. Configure the Mobile Service name and access key.
+1. Configure the Mobile Service URL and access key.
 
-	Get the **Mobile Service Name** and **Mobile Service Key** values. Browse to your Mobile Service, copy the service name and click **Manage Keys** on the bottom bar.
+	Get the **Mobile Service URL** and **Mobile Service Key** values. Browse to your Mobile Service dashboard, copy the service URL and click **Manage Keys** on the bottom bar.
 
-	![Mobile Service Name](images/mobile-service-settings-dashboard.png?raw=true "Mobile Service Name")
+	![Mobile Service URL](images/mobile-service-settings-dashboard.png?raw=true "Mobile Service URL")
 
-	_Mobile Service Name_
+	_Mobile Service URL_
 
 	Now copy the **Application Key** value.
 
@@ -158,28 +158,14 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	_Mobile Service Access Key_
 
-	Open the file **Config.Azure.xml** and update the **mobileServiceName** and **mobileServiceKey** values.
-
-	> **Note:** The **mobileServiceName** value corresponds to the name of the Mobile Service as configured in Windows Azure. Do not include the URL for the endpoint.  
+	Open the file **Config.Azure.xml** and update the **mobileServiceUrl** and **mobileServiceKey** values.
 
 	````XML
 	<configuration>
-		<mobileServiceName>[Mobile Service Name]</mobileServiceName>
+		<mobileServiceUrl>https://[Mobile Service Name].azure-mobile.net/</mobileServiceUrl>
 		<mobileServiceKey>[Mobile Service Key]</mobileServiceKey>
 	</configuration>
 	````
-
-1. Associate the Windows Phone 8 app to Mobile Services.
-
-	Open the Windows Phone 8 solution located at {demo_directory}\source\code\begin\WindowsPhone8. 
-
-	Open the file **App.xaml.cs** and replace the placeholders where the **MobileServiceClient** object is created with the mobile service name and mobile service key obtained from the Windows Azure portal.
-
-	![Connect the Windows Phone 8 app to Mobile Services](images/connect-phoneapp-to-mobile-services-code.png?raw=true "Connect the Windows Phone 8 app to Mobile Services")
-	
-	_Code to replace in App.xaml.cs_
-
-	Save the changes and close the solution.
 
 1. Configure the package name of the Windows Store application.
 
@@ -239,6 +225,17 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 	
 1. Start the demo on the Windows 8 start screen.
 
+<a name="knownissues"/>
+### Known Issues ###
+
+In Segment 4, when trying to send a push notification using the Windows Phone 8 application, the client might not receive the notification. This is likely caused by (the user) not having registered the application in the Windows Store as part of the demo setup.
+
+If you review your Mobile Services logs you might find the following error:
+
+_Error in script '/table/Rating.insert.js'. Error: The cloud service is not authorized to send a notification to this URI even though they are authenticated._ 
+
+Follow the steps in  the section [Setup for the cloud environment](#SetupCloudEnvironment) to register your application with the Windows Store to resolve the issue.
+
 <a name="Demo" /> 
 ## Demo ##
 
@@ -278,7 +275,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	![EventBuddy-sessions-commandbar](images/eventbuddy-sessions-commandbar.png?raw=true)
 
-1. Navigate back to first screen and show that our data is gone.
+1. Navigate back to the first screen and show that our data is gone.
 	
 	![EventBuddy-datagone](images/eventbuddy-datagone.png?raw=true)
 
@@ -293,7 +290,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	> **Speaking Point:** So let's switch over to the Windows Azure portal. And you'll see here we're on the mobile services tab. And creating a new mobile service is incredibly easy. I click new, compute, mobile service, create. I enter the name of my mobile service, and this guide will take me through the steps, just two steps necessary. Only takes about 15 seconds.   
 
-1. Click on the New link on the lower left corner and select Compute -> Mobile Service -> Create from the fly out menu.
+1. Click on the New link in the lower left corner and select Compute -> Mobile Service -> Create from the fly out menu.
 
 	![portal-create-mobileservice](images/portal-create-mobileservice.png?raw=true)
 
@@ -357,7 +354,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	> **Speaking Point:** With one line of code we can simply establish a connection to Windows Azure Mobile Services from our Windows Store app.
 
-1. Select the **MobileServiceClient** from the above code and add a using statement for the **Microsoft.WindowsAzure.MobileServices** namespace by entering ***CTRL + .*** and then Enter on the context menu. 
+1. Select the **MobileServiceClient** from the above code and add a using statement for the **Microsoft.WindowsAzure.MobileServices** namespace by entering ***CTRL + .*** and then Enter in the context menu. 
 
 
 	> **Speaking Point:** And then over in the events page, I'm going to add the code necessary to insert data into Windows Azure.
@@ -536,6 +533,8 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 	}
 	````
 
+	> **Note:** Take into account that in order to show an Update and retrieve a new Twitter handler picture, you must paste the above script into the **Update** operation, but renaming the function to _update_. This way, whenever you change a Session with a different Twitter handle, the new picture URL will be retrieved and saved.
+
 1. Press the **Save** button to save the changes to the script and wait for the confirmation that the changes have been saved.
 
 	![portal-session-script-save](images/portal-session-script-save.png?raw=true)
@@ -575,7 +574,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 1. Close the confirmation when the table is created.
 
-1. Update the Insert Script for rating a session to the below code.  Use the Internet Explorer Favorite labeled **Rating** on the Favorites bar to copy the code to the clipboard. 
+1. Update the Insert Script to the below code in order to rate a session. Use the Internet Explorer Favorite labeled **Rating** on the Favorites bar to copy the code to the clipboard. 
 
 	> **Speaking Point:** Once again instead of making you wait while I type in this script, I'll copy the script I wrote earlier to the clipboard and paste it in.  
 	
@@ -648,4 +647,4 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 <a name="Closing" />
 ### Closing ###
 
-In just a few minutes you've seen how a developer can quickly connect an offline application to the cloud to store data and adding support for authentication. You've seen how easily you can connect different devices to the same services and interact with them using push notifications.
+In just a few minutes you've seen how a developer can quickly connect an offline application to the cloud to store data and add support for authentication. You've seen how easily you can connect different devices to the same services and interact with them using push notifications.

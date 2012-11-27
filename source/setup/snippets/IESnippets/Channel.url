@@ -7,9 +7,9 @@ ORIGURL=
 Prop3=19,15
 [InternetShortcut]
 IDList=
-URL=javascript:(function()%7Bwindow.clipboardData.setData('text'%2C'function%20insert(item%2C%20user%2C%20request)%20%7B%5Cr%5Cn%09%20item.userId%20%3D%20user.userId%3B%5Cr%5Cn%09%20request.execute()%3B%5Cr%5Cn%7D')%7D)()
+URL=javascript:(function(){window.clipboardData.setData('text','function insert(item, user, request) {\n    item.userId = user.userId;\n    request.execute();\n}')})()
 IconFile=C:\Windows\System32\url.dll
 IconIndex=0
 HotKey=0
 [Bookmarklet]
-ExtendedURL=javascript:(function()%7Bwindow.clipboardData.setData('text'%2C'function%20insert(item%2C%20user%2C%20request)%20%7B%5Cr%5Cn%09%20item.userId%20%3D%20user.userId%3B%5Cr%5Cn%09%20request.execute()%3B%5Cr%5Cn%7D')%7D)()
+ExtendedURL=javascript:(function(){window.clipboardData.setData('text','function insert(item, user, request) {\n    item.userId = user.userId;\n    request.execute();\n}')})()

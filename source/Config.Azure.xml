@@ -1,4 +1,4 @@
 <configuration>
-    <mobileServiceName>[Mobile Service Name]</mobileServiceName>
+    <mobileServiceUrl>https://[Mobile Service Name].azure-mobile.net/</mobileServiceUrl>
     <mobileServiceKey>[Mobile Service Key]</mobileServiceKey>
 </configuration>
