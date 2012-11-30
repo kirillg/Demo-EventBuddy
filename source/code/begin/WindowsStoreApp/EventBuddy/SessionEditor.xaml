@@ -103,11 +103,11 @@
                                     <controls:ValidatingTextBox x:Name="endDate" Validator="{StaticResource DateValidator}" Text="{Binding End, Mode=TwoWay, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:MM/dd/yyyy hh:mm tt}'}"/>
                                 </StackPanel>
                             </Grid>
-                            <TextBlock Text="Upload Document:" Style="{StaticResource PopupContentTextBlock}" Visibility="Collapsed"/>
+                            <TextBlock Text="Upload Document:" Style="{StaticResource PopupContentTextBlock}"/>
                             <StackPanel Orientation="Horizontal" Margin="30,2,0,0">
-                                <TextBlock Style="{StaticResource PopupContentFileNameTextBlock}" x:Name="FileNameTextBlock" Visibility="Collapsed"></TextBlock>                                
+                                <TextBlock Style="{StaticResource PopupContentFileNameTextBlock}" x:Name="FileNameTextBlock"></TextBlock>                                
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="30,3,0,5" Visibility="Collapsed">
+                            <StackPanel Orientation="Horizontal" Margin="30,3,0,5" Tapped="OnUploadClick">
                                 <Image Source="Assets/plus.png" />
                                 <TextBlock Text="Upload File"  Style="{StaticResource SubheaderTextStyle}" Margin="10 0 0 0" FontSize="22" />
                             </StackPanel>   
@@ -115,8 +115,8 @@
                                 <ProgressBar Name="uploadProgress" Visibility="Collapsed" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Margin="0">
-                                <Button Style="{StaticResource PopupContentCancelButton}" Click="OnCancelClick" Margin="0"/>
-                                <Button Content="Save Session" Style="{StaticResource PopupContentSaveButton}" Click="OnSaveClick" Margin="0" />
+                                <Button x:Name="CancelButton" Style="{StaticResource PopupContentCancelButton}" Click="OnCancelClick" Margin="0"/>
+                                <Button x:Name="SaveButton" Content="Save Session" Style="{StaticResource PopupContentSaveButton}" Click="OnSaveClick" Margin="0" />
                             </StackPanel>
                         </StackPanel>
                     </Grid>

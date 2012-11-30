@@ -125,6 +125,7 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="AddAppBarButton" IconUri="Assets\add.png" Text="Add Event"></shell:ApplicationBarIconButton>
             <shell:ApplicationBarIconButton x:Name="RefreshAppBarButton" IconUri="Assets\refresh.png" Text="Refresh" Click="RefreshAppBarButton_Click"></shell:ApplicationBarIconButton>
             <shell:ApplicationBarIconButton x:Name="LoginAppBarButton" IconUri="Assets\login.png" Text="login" Click="LoginAppBarButton_Click"></shell:ApplicationBarIconButton>
         </shell:ApplicationBar>

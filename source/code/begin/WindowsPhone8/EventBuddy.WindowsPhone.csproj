@@ -158,10 +158,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\add.png" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\edit.png" />
     <Content Include="Assets\Facebook.png" />
     <Content Include="Assets\NoProfile.png" />
     <Content Include="Assets\PowerPointLogo.png">

@@ -1,5 +1,4 @@
-﻿using Microsoft.Live;
-using EventBuddy.Common;
+﻿using EventBuddy.Common;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -11,8 +10,8 @@ namespace EventBuddy
     sealed partial class App : Application
     {
         //TODO: add mobile service client
-
-
+        
+		
         #region
 
         public App()
@@ -50,11 +49,9 @@ namespace EventBuddy
                 }
             }
             // Ensure the current window is active
-            Window.Current.Activate();
+            Window.Current.Activate();            
         }
     
-        public static LiveConnectSession LiveSession;
-
         #endregion
     }
 }

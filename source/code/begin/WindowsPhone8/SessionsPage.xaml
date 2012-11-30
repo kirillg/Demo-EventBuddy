@@ -115,6 +115,8 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="AddAppBarButton" IconUri="Assets\add.png" Text="Add Session"></shell:ApplicationBarIconButton>
+            <shell:ApplicationBarIconButton x:Name="EditAppBarButton" IconUri="Assets\edit.png" Text="Edit Event"></shell:ApplicationBarIconButton>
             <shell:ApplicationBarIconButton x:Name="RefreshAppBarButton" IconUri="Assets\refresh.png" Text="Refresh" Click="RefreshAppBarButton_Click"></shell:ApplicationBarIconButton>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

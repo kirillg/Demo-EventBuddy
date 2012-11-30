@@ -27,9 +27,8 @@ namespace EventBuddy
             
         }
 
-        private async void UpdateSessionWithDeck(Session session, string deckSource)
+        private async void UpdateSession(Session item)
         {
-            session.DeckSource = deckSource;
             //TODO: Update Session
             
         }
@@ -56,7 +55,6 @@ namespace EventBuddy
             this.InitializeComponent();
             User.Current.PropertyChanged += this.OnUserPropertyChanged;
             this.SetLoggedUser();
-            this.sessionEditor.UploadCallback = UpdateSessionWithDeck;
         }
 
         private void OnUserPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -112,7 +110,7 @@ namespace EventBuddy
             }
             else
             {
-                await GetPrivateClient().GetTable<Session>().UpdateAsync(item);
+                UpdateSession(item);
                 
                 await LoadSessions(this.Event);
             }

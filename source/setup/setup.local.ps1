@@ -34,9 +34,6 @@ if($demoSettingsFileAzure -eq $nul -or $demoSettingsFileAzure -eq "")
 [string] $appResourcesFile = $xmlDemoSettings.configuration.localPaths.appResourcesFile
 [string] $workingDir = $xmlDemoSettings.configuration.localPaths.workingDir
 [string] $solutionWorkingDir = $xmlDemoSettings.configuration.localPaths.solutionWorkingDir
-[string] $serverSnippetsDirInAssets = $xmlDemoSettings.configuration.localPaths.serverSnippetsDirInAssets
-
-[string] $serverSnippetsList = $xmlDemoSettings.configuration.serverSnippetsList
 
 [string] $usePhoneEmulator = $xmlDemoSettings.configuration.settings.usePhoneEmulator
 
@@ -152,8 +149,9 @@ write-host "Installing IE Snippets done!"
 
 write-host
 write-host
-write-host "========= Copying Visual Studio .suo to Begin Solution... ========="
-Copy-Item "$vsSuoDir\*.suo" "$solutionWorkingDir" -Recurse -Force
+write-host "========= Copying Visual Studio .suo to Begin Solution (Windows 8 app)... ========="
+$win8appSolutionFolder = (Get-ChildItem $solution | Select-Object Directory).Directory.FullName
+Copy-Item "$vsSuoDir\EventBuddy.v11.suo" "$win8appSolutionFolder" -Force
 write-host "Copying Visual Studio .suo to begin solution Done!!"
 
 write-host

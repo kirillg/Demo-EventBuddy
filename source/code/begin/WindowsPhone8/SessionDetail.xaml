@@ -57,7 +57,7 @@
 
                 <!-- Documents -->
                 <TextBlock Text="Documents" Style="{StaticResource CustomPhoneTextHeaderStyle}"/>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="DocumentsPanel"  Orientation="Horizontal">
                     <Image Source="Assets/PowerPointLogo.png" Width="39" Height="44" Margin="15 10 0 0"/>
                     <HyperlinkButton Content="View" TargetName="_blank" NavigateUri="{Binding DeckSource}" Foreground="Black" />
                 </StackPanel>                      
@@ -74,4 +74,9 @@
             </StackPanel>
         </Grid>
     </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="EditAppBarButton" IconUri="Assets\edit.png" Text="Edit Session"></shell:ApplicationBarIconButton>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

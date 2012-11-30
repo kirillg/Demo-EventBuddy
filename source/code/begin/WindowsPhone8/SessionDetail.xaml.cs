@@ -13,19 +13,20 @@ using System.Windows.Navigation;
 namespace EventBuddy.WindowsPhone
 {
     public partial class SessionDetail : PhoneApplicationPage, INotifyPropertyChanged
-    {      
+    {
         public SessionDetail()
         {
-            InitializeComponent();                       
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             Session = PhoneApplicationService.Current.State["Session"] as Session;
+            this.DocumentsPanel.Visibility = string.IsNullOrEmpty(Session.DeckSource) ? Visibility.Collapsed : Visibility.Visible;
             this.DataContext = Session;
         }
-              
+
         private void OnStarTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             int score = 0;
@@ -61,7 +62,7 @@ namespace EventBuddy.WindowsPhone
                     break;
             }
 
-            SendRating(score);            
+            SendRating(score);
         }
 
         private void SendRating(int score)
@@ -74,7 +75,7 @@ namespace EventBuddy.WindowsPhone
             else if (provider.Equals("facebook", StringComparison.OrdinalIgnoreCase))
             {
                 SendRatingFacebook(score);
-            }           
+            }
         }
 
         private void SendRatingTwitter(int score)
@@ -97,8 +98,8 @@ namespace EventBuddy.WindowsPhone
                 {
                     SessionId = Session.Id,
                     Score = (float)score,
-                    RaterName = "Nick Harris",
-                    ImageUrl = "https://twimg0-a.akamaihd.net/profile_images/1349731834/profile2_reasonably_small.png"
+                    RaterName = "Someone",
+                    ImageUrl = "Assets/NoProfile.png"
                 };
 
                 await App.MobileService.GetTable<Rating>().InsertAsync(rating);
@@ -114,7 +115,7 @@ namespace EventBuddy.WindowsPhone
                 {
                     SessionId = Session.Id,
                     Score = (float)score,
-                    RaterName = fu.UserName,
+                    RaterName = fu.FullName,
                     ImageUrl = fu.PictureUrl
                 };
 
@@ -125,8 +126,8 @@ namespace EventBuddy.WindowsPhone
                 {
                     SessionId = Session.Id,
                     Score = (float)score,
-                    RaterName = "Nick Harris",
-                    ImageUrl = "https://twimg0-a.akamaihd.net/profile_images/1349731834/profile2_reasonably_small.png"
+                    RaterName = "Someone",
+                    ImageUrl = "Assets/NoProfile.png"
                 };
 
                 await App.MobileService.GetTable<Rating>().InsertAsync(rating);

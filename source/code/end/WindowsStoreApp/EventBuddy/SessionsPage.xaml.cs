@@ -26,11 +26,9 @@ namespace EventBuddy
             Sessions = await App.MobileService.GetTable<Session>().Where(e => e.EventId == Event.Id).ToEnumerableAsync();
         }
 
-        private async void UpdateSessionWithDeck(Session session, string deckSource)
+        private async void UpdateSession(Session item)
         {
-            session.DeckSource = deckSource;
-            
-            await App.MobileService.GetTable<Session>().UpdateAsync(session);            
+            await GetPrivateClient().GetTable<Session>().UpdateAsync(item);
         }
 
         #region 
@@ -55,7 +53,6 @@ namespace EventBuddy
             this.InitializeComponent();
             User.Current.PropertyChanged += this.OnUserPropertyChanged;
             this.SetLoggedUser();
-            this.sessionEditor.UploadCallback = UpdateSessionWithDeck;
         }
 
         private void OnUserPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -111,7 +108,7 @@ namespace EventBuddy
             }
             else
             {
-                await GetPrivateClient().GetTable<Session>().UpdateAsync(item);
+                UpdateSession(item);
                 
                 await LoadSessions(this.Event);
             }

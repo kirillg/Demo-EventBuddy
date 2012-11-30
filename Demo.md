@@ -6,7 +6,7 @@
 <a name="Overview"/>
 ## Overview ##
 
-In this demo you will start with a disconnected application that manages events and sessions to later connect it utilizing **Windows Azure Mobile Services** to provide structured storage for events and sessions. In order to use authentication within the application, you will add **Twitter** (or **Facebook**) to your application and services. Following this you finish by sending Live Tiles using push notifications every time an attendee rates a session.
+In this demo you will start with a disconnected application that manages events and sessions to later connect it utilizing **Windows Azure Mobile Services** to provide structured storage for events and sessions. In order to use authentication within the application, you will add **Twitter** (or **Facebook**) to your application and services. Following this you will upload session decks to **SkyDrive** and finish by sending Live Tiles using push notifications every time an attendee rates a session.
 
 > **Note:** This demo was designed for **Windows 8** and **Visual Studio Professional** or higher editions. However, it supports Visual Studio Express editions. In that case, the Windows 8 application must be opened with **Visual Studio 2012 Express for Windows 8** and the Windows Phone 8 application must be opened with **Visual Studio 2012 Express for Windows Phone**.
 
@@ -17,7 +17,8 @@ This demo covers:
 1. [Getting Started with Mobile Services to Store Data](#Segment1)
 1. [Structured Storage: Connecting your app using Mobile Services](#Segment2)
 1. [Authentication, Authorization, and Service-Side Scripts](#Segment3) 
-1. [Sending Push Notifications for Live Tiles to draw users back to your application](#Segment4) 
+1. [Upload a file to SkyDrive](#Segment4)
+1. [Sending Push Notifications for Live Tiles to draw users back to your application](#Segment5) 
 
 <a name="KeyTechnologies" />
 ### Key Technologies ###
@@ -219,6 +220,22 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 1. Switch to the **Internet Explorer** instance started by the reset script and log in the **Windows Azure Management Portal**.
 
+1. Deploy the Windows Phone 8 app to a **Windows Phone** device.
+
+	> **Note:** If you configured the **usePhoneEmulator** setting to true you don't need to follow these steps. A new instance of Visual Studio will be automatically opened with the Windows Phone 8 app solution and you'll only need to run the app (F5) to start the emulator. 
+
+	Before you continue, please make sure that you have all the prerequisites to deploy an application to a Windows Phone device. Detailed information on this subject can be found in [Deploying and testing apps on your Windows Phone](http://msdn.microsoft.com/en-US/library/windowsphone/develop/gg588378\(v=vs.105\).aspx).
+
+	Make sure the device is connected to the development computer, turned on, and unlocked.
+
+	In Visual Studio on the Standard toolbar, select **Device.**
+
+	![Selecting Phone Device](images/selecting-phone-device.png?raw=true "Selecting Phone Device") 
+
+	To deploy without running the application, on the **Build** menu, click **Deploy Solution**.
+
+	![Deploying to Windows Phone device](images/deploying-phone-app.png?raw=true "Deploying to Windows Phone device") 
+
 1. Start the Event Buddy app in Visual Studio. If you are prompted to uninstall the existing app, click yes and continue.
 
 	![reset-uninstall-app](images/reset-uninstall-app.png?raw=true)
@@ -228,13 +245,19 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 <a name="knownissues"/>
 ### Known Issues ###
 
-In Segment 4, when trying to send a push notification using the Windows Phone 8 application, the client might not receive the notification. This is likely caused by (the user) not having registered the application in the Windows Store as part of the demo setup.
+1. In Segment 5, when trying to send a push notification using the Windows Phone 8 application, the client might not receive the notification. This is likely caused by (the user) not having registered the application in the Windows Store as part of the demo setup.
 
-If you review your Mobile Services logs you might find the following error:
+	If you review your Mobile Services logs you might find the following error:
 
-_Error in script '/table/Rating.insert.js'. Error: The cloud service is not authorized to send a notification to this URI even though they are authenticated._ 
+	_Error in script '/table/Rating.insert.js'. Error: The cloud service is not authorized to send a notification to this URI even though they are authenticated._ 
 
-Follow the steps in  the section [Setup for the cloud environment](#SetupCloudEnvironment) to register your application with the Windows Store to resolve the issue.
+	Follow the steps in  the section [Setup for the cloud environment](#SetupCloudEnvironment) to register your application with the Windows Store to resolve the issue.
+
+1. If you try to upload a file to SkyDrive and you receive a message saying that there was an error while logging in to Skydrive, it is likely caused by (the user) not having registered the application in the Windows Store as part of the demo setup.
+
+	Follow the steps in  the section [Setup for the cloud environment](#SetupCloudEnvironment) to register your application with the Windows Store to resolve the issue.
+
+3. When uploading a file with the Windows 8 application, the link returned by the Skydrive API to download it **expires in 1 hour**. After that time, you won't be able to download the file with your Windows Phone client.
 
 <a name="Demo" /> 
 ## Demo ##
@@ -444,7 +467,7 @@ Follow the steps in  the section [Setup for the cloud environment](#SetupCloudEn
 	````
 
 
-	> **Speaking Point:** Now, before I show you that, let's just finish doing our data code for the session table. So I need to insert the save session code.
+	> **Speaking Point:** Now, before I show you that, let's just finish doing our data code for the session table. So I need to insert the save, load and update session code.
 
 1. Open **SessionsPage.xaml.cs** 
 
@@ -458,13 +481,22 @@ Follow the steps in  the section [Setup for the cloud environment](#SetupCloudEn
 
 	> **Speaking Point:** And we'll add the necessary code to retrieve the sessions.
 
-1. Navigate to the LoadSessions method and locate _//TODO: Query Sessions for event_. Replace the comment with the following code:
+1. Navigate to the **LoadSessions** method and locate _//TODO: Query Sessions for event_. Replace the comment with the following code:
 
 	(Code Snippet - _wamsSessionQuery_)
 
 	````C#
 	Sessions = await App.MobileService.GetTable<Session>().Where(e => e.EventId == Event.Id).ToEnumerableAsync();
 	````
+
+1. Navigate to the **UpdateSession** method and locate _//TODO: Update Session_. Replace the comment with the following code:
+
+	(Code Snippet - _wamsSessionUpdate_)
+
+	````C#
+	await App.MobileService.GetTable<Session>().UpdateAsync(item);
+	````
+
 
 	> **Speaking Point:** So let's run the application again, but this time I'm going to log in. So when I click this button here, that's going to sign me in by Twitter. It's going to execute that line of code we pasted before. I want you to notice that automatically it pops the UI, it logs me into Twitter, and the service is now aware of my identity. I'm logged into my mobile service.
 
@@ -552,9 +584,44 @@ Follow the steps in  the section [Setup for the cloud environment](#SetupCloudEn
 	![eventbuddy-session-list](images/eventbuddy-session-list.png?raw=true)
 
 	> **Speaking Point:** We can now see that when our session insert was performed our service side script executed, retrieved the speaker photo from Twitter and updated the speaker profile picture. 	
- 
+
 <a name="Segment4" />
-### Segment 4: Push Notifications  ###
+### Segment 4: Using SkyDrive to Store Presentations  ###
+
+> **Speaking Point:** The next thing I want to share with you is how to integrate SkyDrive in this scenario. So I'm going to click on the mobile service, edit the session, and then upload a file. 
+
+1. Select the session that you just created and click **Edit** at the bottom AppBar.
+
+	![editing-session](images/editing-session.png?raw=true)
+
+1. Once in the Edit Session window, click **Upload file**.
+
+	![uploading-file](images/uploading-file.png?raw=true)
+
+	> **Note:** If you are not logged in with a Microsoft account, a dialog will be displayed asking for your credentials to connect to SkyDrive. Insert your credentials and click **Save**. Then you will be prompted with a consent message asking for permission to edit data in your SkyDrive account. Go ahead and accept the consent message in order to choose the file to upload.
+
+	> ![login-microsoft-account](images/login-microsoft-account.png?raw=true)
+
+1. In the file picker select the deck that you want to upload and press **Open**. Then save the session.
+
+	> **Speaking Point:** Let's upload the slide for my presentation later.
+
+	![choosing-file-to-upload](images/choosing-file-to-upload.png?raw=true)
+
+1. Demonstrate how you can now open the slides directly from SkyDrive using Windows Phone.
+
+	> **Note:** Alternatively, if you don't have a Windows Phone 8, you can use the Windows Phone emulator with the Windows Phone 8 solution provided.
+
+	> **Speaking Point:** Here I have a Windows Phone 8, which has the EventBuddy application already installed. Now I'm going to log in and enter the session that I've created earlier. Notice that there is a new document. Let's open it, and we will be able to see the slides I've uploaded previously right on the phone.
+
+	In your Windows Phone 8, browse to the Session you created before in the Windows Store application.
+
+	Once in the Session, click **View** to open the slides.
+
+	![viewing-deck-mobile](images/viewing-deck-mobile.png?raw=true)
+
+<a name="Segment5" />
+### Segment 5: Push Notifications  ###
 
 > **Speaking Point:** I now want to allow attendees to be able to rate sessions at the conference and once they rate a session I want the speaker to receive a live tile update that shows what that rating was.
 

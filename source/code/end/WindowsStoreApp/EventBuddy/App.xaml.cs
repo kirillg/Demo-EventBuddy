@@ -1,5 +1,4 @@
 ﻿using EventBuddy.Common;
-using Microsoft.Live;
 using Microsoft.WindowsAzure.MobileServices;
 using System;
 using Windows.ApplicationModel;
@@ -56,8 +55,6 @@ namespace EventBuddy
             Window.Current.Activate();
         }
     
-        public static LiveConnectSession LiveSession;
-
         #endregion
     }
 }
