@@ -534,7 +534,7 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	> **Speaking Point:** Instead of making you wait while I type in this script, I'll copy the script I wrote earlier to the clipboard and paste it in.
 
-	> **Speaking Point:** This JavaScript will simply go out to Twitter's APIs, retrieve the profile picture for the speaker using the speaker's twitter account, and store the URL of the picture with the session record. 
+	> This JavaScript will simply go out to Twitter's APIs, retrieve the profile picture for the speaker using the speaker's twitter account, and store the URL of the picture with the session record. 
 
 	````JavaScript
 	function insert(item, user, request) {
