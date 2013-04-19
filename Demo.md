@@ -612,9 +612,9 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	> **Note:** Alternatively, if you don't have a Windows Phone 8, you can use the Windows Phone emulator with the Windows Phone 8 solution provided.
 
-	> **Speaking Point:** Here I have a Windows Phone 8, which has the EventBuddy application already installed. Now I'm going to log in and enter the session that I've created earlier. Notice that there is a new document. Let's open it, and we will be able to see the slides I've uploaded previously right on the phone.
-
 	In your Windows Phone 8, browse to the Session you created before in the Windows Store application.
+	
+	> **Speaking Point:** Here I have a Windows Phone 8, which has the EventBuddy application already installed. Now I'm going to log in and enter the session that I've created earlier. Notice that there is a new document. Let's open it, and we will be able to see the slides I've uploaded previously right on the phone.
 
 	Once in the Session, click **View** to open the slides.
 
@@ -643,8 +643,6 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 1. Update the Insert Script to the below code in order to rate a session. Use the Internet Explorer Favorite labeled **Rating** on the Favorites bar to copy the code to the clipboard. 
 
-	> **Speaking Point:** Once again instead of making you wait while I type in this script, I'll copy the script I wrote earlier to the clipboard and paste it in.  
-	
 	````JavaScript
 	function insert(item, user, request) {
 		 request.execute({
@@ -677,9 +675,9 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 		 });
 	}
 	````
+	> **Speaking Point:** Once again instead of making you wait while I type in this script, I'll copy the script I wrote earlier to the clipboard and paste it in.  
 
-
-	> **Speaking Point:** With this script, we are going to execute some code on the service side whenever an Insert occurs.  In this script we have a bit of SQL to look up the Channel URI and name for the current user from our Channel table. This Channel information is used by Windows Notification Services to send a push message to a specific user. Then once we have the Channel information, with one line of code we will call out to the Windows Notification Service and send a push notification to the client application. 
+	> With this script, we are going to execute some code on the service side whenever an Insert occurs.  In this script we have a bit of SQL to look up the Channel URI and name for the current user from our Channel table. This Channel information is used by Windows Notification Services to send a push message to a specific user. Then once we have the Channel information, with one line of code we will call out to the Windows Notification Service and send a push notification to the client application. 
 
 1. Click the **Save** button to save the changes to the server-side script. 
 
