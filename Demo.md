@@ -317,9 +317,9 @@ https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-pus
 
 	![portal-create-mobileservice](images/portal-create-mobileservice.png?raw=true)
 
-1. Close the **New Mobile Service** dialog.
-
 	> **Speaking Point:** For the sake of time, I've created one for our demo named **EventBuddyDemo**.  
+
+1. Close the **New Mobile Service** dialog.
 
 	> **Note:**  The pre-existing Mobile Service is to save time.  It has a Channel table, Push Notifications and Twitter authentication configured to avoid lots of cut/paste context switching during the demo.  
 
