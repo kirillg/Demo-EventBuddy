@@ -16,6 +16,10 @@ namespace EventBuddy
     {
         private async void SaveSession(Session item)
         {
+            if (item.Speaker == null)
+            {
+                item.Speaker = this.loggedUser.Text;
+            }
             await App.MobileService.GetTable<Session>().InsertAsync(item);
 
             Sessions.Add(item);

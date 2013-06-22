@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace EventBuddy.DataModel
 {
+    [DataContract]
     public class Rating : BindableBase
     {
         private int _id;

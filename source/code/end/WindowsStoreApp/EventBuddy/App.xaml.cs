@@ -11,9 +11,9 @@ namespace EventBuddy
     sealed partial class App : Application
     {
         public static MobileServiceClient MobileService = new MobileServiceClient(
-            "https://{mobile-service-name}.azure-mobile.net/",
-            "{mobile-service-key}"
-        );
+    "https://eventbuddykg.azure-mobile.net/",
+    "ZAcIzJkGSoPgYbBEgvroUxaRNoWmGa53"
+);
 
         #region
 

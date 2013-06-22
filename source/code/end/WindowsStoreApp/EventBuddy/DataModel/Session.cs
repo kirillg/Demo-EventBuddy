@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace EventBuddy.DataModel
 {
+    [DataContract]
     public class Session : BindableBase
     {
         public Session()

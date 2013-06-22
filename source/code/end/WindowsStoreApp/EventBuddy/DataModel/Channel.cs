@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace EventBuddy.DataModel
 {
+    [DataContract]
     public class Channel
     {
         [DataMember(Name="id")]

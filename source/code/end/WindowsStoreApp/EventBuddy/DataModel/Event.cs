@@ -11,7 +11,7 @@ namespace EventBuddy.DataModel
 {
     using System.ComponentModel.DataAnnotations;
     using System.Globalization;
-
+    [DataContract]
     public class Event 
     {
         public Event()
