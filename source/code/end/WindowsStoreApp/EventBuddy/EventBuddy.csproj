@@ -13,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <PackageCertificateThumbprint>8A93AC411D3BA320E402DEB44F1661B62F83EECC</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>EventBuddy_StoreKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -157,6 +159,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
+    <None Include="EventBuddy_StoreKey.pfx" />
     <None Include="EventBuddy_TemporaryKey.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -184,6 +187,7 @@
     <Content Include="Assets\Twitter.png" />
     <Content Include="Assets\twitter_icon.png" />
     <Content Include="Assets\Sessions.png" />
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
